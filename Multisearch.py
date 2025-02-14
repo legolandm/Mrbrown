@@ -1,40 +1,38 @@
-import os
-import requests
-from duckduckgo_search import ddg_images
+import webbrowser
 
-def download_images(keywords, num_images, output_dir):
-    for keyword in keywords:
-        print(f"Searching images for: {keyword}")
-        results = ddg_images(keyword, max_results=num_images)
+# List of keywords you want to search
+keywords = ["Marilyn Monroe", "Michael Jackson", "Kurt Cobain", "Whitney Houston", "River Phoenix", "Chris Farley", "Lindsey Lohan", "Amy Winehouse", "Heath Ledger", "Shannen Doherty", "Brad Pitt", "Britney Spears", "Robert Downey Jr.", "Justin Bieber", "Tommy Lee", "Lady Gaga", "Prince", "Eminem", "Drew Barrymore", "Jim Morrison", "Kanye West", "Charlize Theron", "Justin Timberlake", "Angelina Jolie", "Johnny Depp", "Tupac Shakur", "Ben Affleck", "Courtney Love", "Michael Buble", "Selena Gomez", "Beyoncé", "Ariana Grande", "Kylie Jenner", "Rihanna", "Kesha", "Madonna", "Shia LaBeouf", "Paris Hilton", "Tyler Perry", "Keanu Reeves", "Jared Leto", "Drake", "Dwayne The Rock Johnson", "Mariah Carey", "Will Smith", "Tom Cruise", "Natalie Portman", "Victoria Beckham", "Kim Kardashian", "Leonardo DiCaprio"
 
-        folder = os.path.join(output_dir, keyword)
-        os.makedirs(folder, exist_ok=True)
 
-        count = 0
-        for result in results:
-            try:
-                image_url = result['image']
-                response = requests.get(image_url, stream=True)
+]
 
-                if response.status_code == 200:
-                    image_path = os.path.join(folder, f"{keyword}_{count + 1}.jpg")
-                    with open(image_path, 'wb') as file:
-                        for chunk in response.iter_content(1024):
-                            file.write(chunk)
-                    print(f"Downloaded: {image_path}")
-                    count += 1
+# Base search URL (Google in this case)
+search_engine = "https://www.google.com/search?q="
 
-                    if count >= num_images:
-                        break
-            except Exception as e:
-                print(f"Failed to download image: {e}")
+# Open a new tab for each keyword
+for keyword in keywords:
+    webbrowser.open(search_engine + keyword)
 
-if __name__ == "__main__":
-    # Input from user
-    keywords = input("Enter keywords separated by commas (e.g., cat, dog, car): ").split(',')
-    keywords = [kw.strip() for kw in keywords]
-    num_images = 5
-    output_dir = "Downloaded_Images"
 
-    download_images(keywords, num_images, output_dir)
-    print("All images downloaded successfully!")
+
+
+from User
+
+
+import webbrowser
+
+# Base search URL (Google in this case)
+search_engine = "https://www.google.com/search?q="
+
+# Ask the user for keywords
+user_input = input("Enter the keywords separated by commas: ")
+
+# Split the input into a list of keywords
+keywords = [keyword.strip() for keyword in user_input.split(",")]
+
+# Open a new tab for each keyword
+for keyword in keywords:
+    webbrowser.open(search_engine + keyword)
+
+print("Tabs opened for the given keywords!")
+
